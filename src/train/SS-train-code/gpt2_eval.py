@@ -561,7 +561,7 @@ def main():
         # Note: running .evaluate() doesn't currently have a progress bar, so output will be 'blank' until evaluation is finished.
         metrics = trainer.evaluate()                # Source code: https://github.com/huggingface/transformers/blob/v4.35.0/src/transformers/trainer.py#L2974
 
-        metrics["max_eval_samples_set"] = max_eval_samples
+        metrics["max_eval_samples_set"] = max_eval_samples if max_eval_samples is not None else -1
         try:
             perplexity = math.exp(metrics["eval_loss"])
         except OverflowError:
